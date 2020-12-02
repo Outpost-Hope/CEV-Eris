@@ -51,9 +51,6 @@
 		//Check if we're on fire
 		handle_fire()
 
-		//stuff in the stomach
-		handle_stomach()
-
 		update_pulling()
 
 		for(var/obj/item/weapon/grab/G in src)
@@ -71,6 +68,11 @@
 
 		handle_regular_hud_updates()
 
+	var/turf/T = get_turf(src)
+	if(T)
+		if(registered_z != T.z)
+			update_z(T.z)
+
 /mob/living/proc/handle_breathing()
 	return
 
@@ -87,9 +89,6 @@
 	return
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	return
-
-/mob/living/proc/handle_stomach()
 	return
 
 /mob/living/proc/update_pulling()
